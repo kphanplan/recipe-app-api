@@ -1,0 +1,16 @@
+version: "3"
+
+# service called app, the context of the build will be . (current directory)
+services:
+  app:
+    build:
+      context: .
+      #maps correct ports
+    ports:
+      - "8000:8000"
+      #integrates live changes
+    volumes:
+      - ./app:/app
+      #shell (sh) command (-c) runs image on port 8000 
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
